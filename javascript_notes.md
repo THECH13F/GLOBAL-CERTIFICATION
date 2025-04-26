@@ -1138,3 +1138,41 @@ input.addEventListener("change", () => {
 - Use `event.stopPropagation()` to stop event propagation.
 - Use event delegation for dynamically added elements.
 - Always clean up event listeners when they are no longer needed to avoid memory leaks.
+
+## Example: Button Click to Show Alert and Redirect to Another Page
+
+This example demonstrates how to show an alert message when a button is clicked and then redirect the user to another page.
+
+### HTML Code
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click Example</title>
+</head>
+<body>
+    <button onclick="call()">Click Me!</button>
+</body>
+<script src="index.js"></script>
+</html>
+```
+
+### JavaScript Code
+```javascript
+function call() {
+    alert("You are being redirected...");
+    window.location.href = "output.html";
+}
+```
+
+### Explanation
+1. **HTML Button**: The `<button>` element has an `onclick` attribute that calls the `call()` function when clicked.
+2. **JavaScript Function**: The `call()` function:
+   - Displays an alert message using `alert()`.
+   - Redirects the user to `output.html` using `window.location.href`.
+
+### Output
+- When the button is clicked, an alert box with the message "You are being redirected..." is displayed.
+- After dismissing the alert, the browser navigates to `output.html`.

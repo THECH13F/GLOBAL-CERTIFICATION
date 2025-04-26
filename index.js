@@ -1,4 +1,4 @@
 function call() {
-    var m=document.getElementById("message");
-    m.innerHTML="clicked!";
+    alert("You are being redirected...");
+    window.location.href ="output.html";
 }
