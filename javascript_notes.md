@@ -931,3 +931,210 @@ for (let i = 0; i < 10; i++) {
 }
 document.body.appendChild(fragment); // Adds all elements at once
 ```
+### 18.9 More About DOM Events
+
+DOM events are actions or occurrences that happen in the browser, such as a user clicking a button, hovering over an element, or pressing a key. JavaScript can listen for these events and execute code in response.
+
+---
+
+#### 18.9.1 Event Types
+
+Here are some common event types and their descriptions:
+
+| Event Type      | Description                          |
+|------------------|--------------------------------------|
+| `click`         | Triggered when an element is clicked |
+| `dblclick`      | Triggered when an element is double-clicked |
+| `mouseover`     | Triggered when the mouse hovers over an element |
+| `mouseout`      | Triggered when the mouse leaves an element |
+| `mousedown`     | Triggered when a mouse button is pressed |
+| `mouseup`       | Triggered when a mouse button is released |
+| `keydown`       | Triggered when a key is pressed      |
+| `keyup`         | Triggered when a key is released     |
+| `keypress`      | Triggered when a key is pressed (deprecated, use `keydown` or `keyup`) |
+| `focus`         | Triggered when an element gains focus |
+| `blur`          | Triggered when an element loses focus |
+| `submit`        | Triggered when a form is submitted   |
+| `change`        | Triggered when the value of an input changes |
+| `load`          | Triggered when the page or an image finishes loading |
+| `resize`        | Triggered when the browser window is resized |
+| `scroll`        | Triggered when the user scrolls the page |
+
+---
+
+#### 18.9.2 Event Listener Example
+
+You can use `addEventListener` to attach an event listener to an element.
+
+```javascript
+let button = document.getElementById("myButton");
+
+// Add a click event listener
+button.addEventListener("click", () => {
+    console.log("Button clicked!");
+});
+```
+
+---
+
+#### 18.9.3 Event Object
+
+When an event occurs, an event object is automatically passed to the event handler. This object contains information about the event.
+
+```javascript
+let button = document.getElementById("myButton");
+
+button.addEventListener("click", (event) => {
+    console.log("Event type:", event.type); // Output: click
+    console.log("Target element:", event.target); // The element that triggered the event
+});
+```
+
+---
+
+#### 18.9.4 Preventing Default Behavior
+
+You can use the `preventDefault()` method to stop the default behavior of an event.
+
+```javascript
+let link = document.getElementById("myLink");
+
+link.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevents the link from navigating
+    console.log("Default behavior prevented!");
+});
+```
+
+---
+
+#### 18.9.5 Event Propagation
+
+Events in the DOM propagate in two phases:
+1. **Capturing Phase**: The event starts from the root and goes down to the target element.
+2. **Bubbling Phase**: The event bubbles up from the target element to the root.
+
+You can specify the phase in which the event listener should be triggered by passing a third argument to `addEventListener`.
+
+```javascript
+let parent = document.getElementById("parent");
+let child = document.getElementById("child");
+
+// Event listener on parent
+parent.addEventListener("click", () => {
+    console.log("Parent clicked!");
+}, true); // Capturing phase
+
+// Event listener on child
+child.addEventListener("click", () => {
+    console.log("Child clicked!");
+}, false); // Bubbling phase
+```
+
+---
+
+#### 18.9.6 Stopping Event Propagation
+
+You can use the `stopPropagation()` method to stop the event from propagating further.
+
+```javascript
+let parent = document.getElementById("parent");
+let child = document.getElementById("child");
+
+parent.addEventListener("click", () => {
+    console.log("Parent clicked!");
+});
+
+child.addEventListener("click", (event) => {
+    event.stopPropagation(); // Stops the event from reaching the parent
+    console.log("Child clicked!");
+});
+```
+
+---
+
+#### 18.9.7 Delegating Events
+
+Event delegation is a technique where you attach a single event listener to a parent element to handle events for its child elements. This is useful for dynamically added elements.
+
+```javascript
+let parent = document.getElementById("parent");
+
+// Event delegation
+parent.addEventListener("click", (event) => {
+    if (event.target && event.target.tagName === "BUTTON") {
+        console.log("Button clicked:", event.target.textContent);
+    }
+});
+
+// Adding buttons dynamically
+let button1 = document.createElement("button");
+button1.textContent = "Button 1";
+parent.appendChild(button1);
+
+let button2 = document.createElement("button");
+button2.textContent = "Button 2";
+parent.appendChild(button2);
+```
+
+---
+
+#### 18.9.8 Keyboard Events
+
+You can listen for keyboard events like `keydown`, `keyup`, and `keypress`.
+
+```javascript
+document.addEventListener("keydown", (event) => {
+    console.log("Key pressed:", event.key); // Logs the key pressed
+    console.log("Key code:", event.code); // Logs the physical key code
+});
+```
+
+---
+
+#### 18.9.9 Mouse Events
+
+Mouse events include `click`, `dblclick`, `mouseover`, `mouseout`, `mousedown`, and `mouseup`.
+
+```javascript
+let box = document.getElementById("box");
+
+box.addEventListener("mouseover", () => {
+    console.log("Mouse entered the box!");
+});
+
+box.addEventListener("mouseout", () => {
+    console.log("Mouse left the box!");
+});
+```
+
+---
+
+#### 18.9.10 Form Events
+
+Form events include `submit`, `change`, `focus`, and `blur`.
+
+```javascript
+let form = document.getElementById("myForm");
+
+// Submit event
+form.addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevents form submission
+    console.log("Form submitted!");
+});
+
+// Change event
+let input = document.getElementById("myInput");
+input.addEventListener("change", () => {
+    console.log("Input value changed:", input.value);
+});
+```
+
+---
+
+### Summary of Event Handling
+
+- Use `addEventListener` to attach event listeners.
+- Use `event.preventDefault()` to stop default behavior.
+- Use `event.stopPropagation()` to stop event propagation.
+- Use event delegation for dynamically added elements.
+- Always clean up event listeners when they are no longer needed to avoid memory leaks.
