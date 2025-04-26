@@ -4,4 +4,4 @@ b.forEach(
     (x) => {
         x.innerHTML="Hardik";
     }
-)
+) 
