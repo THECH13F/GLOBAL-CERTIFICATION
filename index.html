@@ -7,7 +7,26 @@
     <title>Document</title>
 </head>
 <body>
-    <button onclick="call()">Click Me!</button>
+    <h2>Simple form with alert</h2>
+    <form id="exampleForm">
+        <label for="username">username</label>
+        <input type="text" id="usernameInput" placeholder="Enter your username...">
+        <br><br>
+        <label for="password">Password</label>
+        <input type="password" id="passwordInput" placeholder="Enter your password...">
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        const form = document.getElementById('exampleForm');
+        const usernameInput = document.getElementById('usernameInput');
+        const passwordInput = document.getElementById('passwordInput');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+            alert(`Username: ${usernameInput.value}, Password: ${passwordInput.value}`);
+        });
+    </script>
 </body>
 <script src="index.js"></script>
 </html>

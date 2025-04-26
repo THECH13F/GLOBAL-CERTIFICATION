@@ -1176,3 +1176,94 @@ function call() {
 ### Output
 - When the button is clicked, an alert box with the message "You are being redirected..." is displayed.
 - After dismissing the alert, the browser navigates to `output.html`.
+
+## Example: Button Click to Show Alert and Redirect to Another Page
+
+This example demonstrates how to show an alert message when a button is clicked and then redirect the user to another page.
+
+### HTML Code
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click Example</title>
+</head>
+<body>
+    <button onclick="call()">Click Me!</button>
+</body>
+<script src="index.js"></script>
+</html>
+```
+
+### JavaScript Code
+```javascript
+function call() {
+    alert("You are being redirected...");
+    window.location.href = "output.html";
+}
+```
+
+### Explanation
+1. **HTML Button**: The `<button>` element has an `onclick` attribute that calls the `call()` function when clicked.
+2. **JavaScript Function**: The `call()` function:
+   - Displays an alert message using `alert()`.
+   - Redirects the user to `output.html` using `window.location.href`.
+
+### Output
+- When the button is clicked, an alert box with the message "You are being redirected..." is displayed.
+- After dismissing the alert, the browser navigates to `output.html`.
+
+## Example: Form Validation with Alert
+
+This example demonstrates how to validate a form and display the entered values in an alert box when the form is submitted.
+
+### HTML Code
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Example</title>
+</head>
+<body>
+    <h2>Simple form with alert</h2>
+    <form id="exampleForm">
+        <label for="username">Username</label>
+        <input type="text" id="usernameInput" placeholder="Enter your username...">
+        <br><br>
+        <label for="password">Password</label>
+        <input type="password" id="passwordInput" placeholder="Enter your password...">
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<script src="index.js"></script>
+</html>
+```
+
+### JavaScript Code
+```javascript
+const form = document.getElementById('exampleForm');
+const usernameInput = document.getElementById('usernameInput');
+const passwordInput = document.getElementById('passwordInput');
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+    alert(`Username: ${usernameInput.value}, Password: ${passwordInput.value}`);
+});
+```
+
+### Explanation
+1. **HTML Form**: The form contains two input fields (`username` and `password`) and a submit button.
+2. **JavaScript Event Listener**:
+   - The `submit` event is captured using `addEventListener`.
+   - `event.preventDefault()` prevents the default form submission behavior.
+   - The values of the `username` and `password` fields are retrieved and displayed in an alert box.
+
+### Output
+- When the user fills in the form and clicks the "Submit" button:
+  - An alert box displays the entered username and password.
+  - The form does not reload the page due to `event.preventDefault()`.
